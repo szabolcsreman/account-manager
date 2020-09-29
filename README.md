@@ -60,6 +60,8 @@ Check API documentation here:
 ```
   http://localhost:8080/v2/api-docs
 ```
+Check application logs in the logs directory.
+
 For inserting an account into the database, first there needs to be a valid user stored. In case there is no user, or the mentioned user in the 
 request body, a validation exception is thrown. The id of the given account is null, because the it will be set at insert.
 There are also implemented the following validations: 
