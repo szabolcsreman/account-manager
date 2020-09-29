@@ -12,5 +12,11 @@ public class AuthenticationResponse {
 	public String getJwtToken() {
 		return jwtToken;
 	}
+
+	@Override
+	public String toString() {
+		return "AuthenticationResponse [jwtToken=" + jwtToken + "]";
+	}
+	
 	
 }

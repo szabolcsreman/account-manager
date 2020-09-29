@@ -1,16 +1,18 @@
 package edu.ing.accountmanager.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 public class Account {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "ID")
 	private Long id;
 
@@ -25,14 +28,14 @@ public class Account {
 	private BigDecimal balance;
 
 	@Column(name = "OPENING_DATE")
-	private LocalDate openingDate;
+	private LocalDateTime openingDate;
 
 	@Column(name = "TYPE")
 	@Enumerated(EnumType.STRING)
 	private AccountType type;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@MapsId
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	public Long getId() {
@@ -51,11 +54,11 @@ public class Account {
 		this.balance = balance;
 	}
 
-	public LocalDate getOpeningDate() {
+	public LocalDateTime getOpeningDate() {
 		return openingDate;
 	}
 
-	public void setOpeningDate(LocalDate openingDate) {
+	public void setOpeningDate(LocalDateTime openingDate) {
 		this.openingDate = openingDate;
 	}
 

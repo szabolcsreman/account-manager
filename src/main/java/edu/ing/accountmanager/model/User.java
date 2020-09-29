@@ -1,15 +1,15 @@
 package edu.ing.accountmanager.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,8 +30,8 @@ public class User {
 	@Column(name = "BIRTH_DATE")
 	private LocalDate birthDate;
 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	private Account savingAccount;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Account> accounts;
 
 	public Long getId() {
 		return id;
@@ -65,12 +65,11 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public Account getSavingAccount() {
-		return savingAccount;
+	public List<Account> getAccounts() {
+		return accounts;
 	}
-
-	public void setSavingAccount(Account savingAccount) {
-		this.savingAccount = savingAccount;
+	
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
 	}
-
 }

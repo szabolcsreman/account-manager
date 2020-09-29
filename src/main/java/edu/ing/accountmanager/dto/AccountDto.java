@@ -2,7 +2,7 @@ package edu.ing.accountmanager.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import edu.ing.accountmanager.model.AccountType;
 
@@ -16,7 +16,9 @@ public class AccountDto implements Serializable {
 	
 	private AccountType type;
 	
-	private LocalDate openingDate;
+	private LocalDateTime openingDate;
+	
+	private Long userId;
 
 	public Long getId() {
 		return id;
@@ -42,12 +44,26 @@ public class AccountDto implements Serializable {
 		this.type = type;
 	}
 
-	public LocalDate getOpeningDate() {
+	public LocalDateTime getOpeningDate() {
 		return openingDate;
 	}
 
-	public void setOpeningDate(LocalDate openingDate) {
+	public void setOpeningDate(LocalDateTime openingDate) {
 		this.openingDate = openingDate;
 	}
 	
+	public Long getUserId() {
+		return userId;
+	}
+	
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "AccountDto [id=" + id + ", balance=" + balance + ", type=" + type + ", openingDate=" + openingDate
+				+ ", userId=" + userId + "]";
+	}
+
 }
